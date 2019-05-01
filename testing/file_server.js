@@ -33,11 +33,13 @@ var server = http.createServer(function(request, response) {
             fs.stat(filePaths[0], function(err, stats) {
                 if (!err && stats.isFile()) {
                     response.writeHead(200);
+                    console.log('200 /index.html');
                     fs.createReadStream(filePaths[0]).pipe(response);
                 } else {
                     fs.stat(filePaths[1], function(err, stats) {
                         if (!err && stats.isFile()) {
                             response.writeHead(200);
+                            console.log('200 /default.html');
                             fs.createReadStream(filePaths[1]).pipe(response);
                         }
                     });
@@ -53,3 +55,6 @@ var server = http.createServer(function(request, response) {
 
 server.listen(8080);
 console.log('server is running at http://127.0.0.1:8080/');
+
+
+//重构 先判定isDirectory  再操作isFile
