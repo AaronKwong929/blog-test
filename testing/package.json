@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@types/koa-router": "^7.0.40",
     "koa": "^2.7.0",
     "koa-router": "^7.4.0"
   }
