@@ -1,1 +1,1 @@
-123
+# view-koa 用于整合koa2 nunjucks，把原来直接输出字符串的方式改为 ctx.render(view, model)
