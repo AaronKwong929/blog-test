@@ -15,5 +15,5 @@ var fn_signIn = async (ctx, next) => {
 
 module.exports = {
     'GET /': fn_index,
-    'POST /signin': fn_signIn,
+    'POST /signin': fn_signIn
 };

@@ -29,8 +29,6 @@ var js_files = files.filter(f => {
 for (var f of js_files)
 ```
 
-s = fs.readdirSync(\_\_dirname + '/controllers');
-
 ## 将扫描目录和创建 router 的代码整合到 controller.js 中
 
 ```javascript
@@ -50,3 +48,13 @@ app.use(controller());
 ```
 
 ## 即可
+
+## 记得在app.js里
+
+```javascript
+app.use(bodyParser());
+```
+
+## 不然ctx.response.name 返回undefined
+
+## “能传参不用全局变量”--廖雪峰
