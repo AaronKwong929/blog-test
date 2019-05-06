@@ -1,0 +1,21 @@
+{
+  "name": "blog-test",
+  "version": "1.0.0",
+  "description": "2019/5/1 开坑 一个月内看看能不能填完",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AaronKwong929/blog-test.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AaronKwong929/blog-test/issues"
+  },
+  "homepage": "https://github.com/AaronKwong929/blog-test#readme"
+}
