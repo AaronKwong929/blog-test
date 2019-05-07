@@ -27,3 +27,4 @@ Node在全局变量process中定义了一个环境变量env.NODE_ENV，在开发
 
 ### 注意在生产环境上必须配置NODE_ENV = 'production' 而开发环境不需要配置，不要使用NODE_ENV === 'development'
 
+## mime.lookup() 在mime2.x.x中改名为mime.getType()
