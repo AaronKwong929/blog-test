@@ -8,7 +8,7 @@ const isProduction = process.env.NODE_ENV === 'production'; // 部署（生产�
 
 
 app.use(async (ctx, next) => {
-    console.log(`Process${ctx.request.method} ${ctx.request.url}...`);
+    console.log(`Process${ctx.request.method} ${ctx.request.url}`);
     var start = new Date().getTime(),
     execTime;
     await next();
