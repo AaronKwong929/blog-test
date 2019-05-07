@@ -29,7 +29,6 @@ var templating = function(path, opts) {
         ctx.render = function(view,model) {
             // 把render后的内容赋值给response.body
             ctx.response.body = env.render(view, Object.assign({}, ctx.state || {}, model || {}));
-            //设置Content.type
             ctx.response.type = 'text/html';
         }
         await next();
