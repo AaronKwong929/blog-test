@@ -57,7 +57,17 @@ var fn_new_submit = async (ctx, next) => {
 var fn_delete = async (ctx, next) => {
     var title = ctx.params.title;
     console.log(`deleting ${title}`);
+    articles.removeNote(title);
     ctx.redirect('/catalog');
+};
+
+var fn_edit = async (ctx, next) => {
+    var title = ctx.params.title;
+    const article = articles.getAtricles(title);
+    ctx.render("edit-article.html", {
+        title: 'edit-article',
+        article,
+    });
 };
 
 module.exports = {
@@ -67,5 +77,6 @@ module.exports = {
     'GET /articles/:title': fn_article,
     'GET /new': fn_new,
     'POST /new': fn_new_submit,
-    'GET /articles/:title/delete': fn_delete
+    'GET /articles/:title/delete': fn_delete,
+    'POST /articles/:title/edit': fn_edit,
 };
