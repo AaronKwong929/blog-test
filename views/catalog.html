@@ -1,0 +1,5 @@
+{% extends "base.html" %} {% block main %}
+{% for article in articless %}
+<a href="/articles/{{ article.title }}"  class="list-group-item">{{ article.title }}</a>
+{% endfor %}
+{% endblock %}

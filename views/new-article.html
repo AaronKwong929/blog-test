@@ -1,0 +1,23 @@
+{% extends "base.html" %} {% block main %}
+<form action="/new" method="post">
+    <p>
+        Title:<input
+            name="title"
+            type="text"
+            class="form-control"
+            placeholder="Title"
+            aria-describedby="basic-addon1"
+        />
+    </p>
+    <p>
+        Content:<input
+            name="content"
+            type="text"
+            class="form-control"
+            placeholder="Content"
+            aria-describedby="basic-addon1"
+        />
+    </p>
+    <button type="submit" class="button is-small is-primary">发布</button>
+</form>
+{% endblock %}

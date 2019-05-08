@@ -1,7 +1,6 @@
 const fs = require('fs');
 
-/** 全局方法 */
-const loadNotes = () => {
+const loadArticles = () => {
     try {
         const databuffer = fs.readFileSync('articles.json');
         const dataJSON = databuffer.toString();
@@ -12,79 +11,64 @@ const loadNotes = () => {
     }
 };
 
-const saveNotes = (notes) => {
-    const dataJSON = JSON.stringify(notes);
+const saveArticle = (article) => {
+    const dataJSON = JSON.stringify(article);
     fs.writeFileSync('articles.json', dataJSON);
 };
-////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////
 
-/** addNote 模块 */
+/** addArticle */
 const addArticle = (title, body, time) => {
-    const notes = loadNotes();
+    const notes = loadArticles();
     const duplicateNote = notes.find((note) => note.title === title);
     if (!duplicateNote) {
         notes.push({
             title: title,
-            body: body,
+            content: body,
             time: time,
         });
 
-        saveNotes(notes);
+        saveArticle(notes);
         console.log('New article added!');
     } else {
-        console.log('Note title taken!');
+        console.log('Article title taken!');
     }
 };
 
-///////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////
 
-/* removeNote模块 */
+/* removeArticle */
 const removeArticle = (title) => {
-    const notes = loadNotes();
-    /*
-    const notesToKeep = notes.filter(function (note) {
-        return note.title !== title;
-    });
-    */
+    const notes = loadArticles();
    const notesToKeep = notes.filter((note) => note.title !== title);
 
     if (notesToKeep.length === notes.length) {
         console.log('no article found');
     } else {
-        saveNotes(notesToKeep);
+        saveArticle(notesToKeep);
         console.log('article removed.');
     }
 }
-////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////
 
-/** displayList 模块 */
-const displayList = () => {
-    const notes = loadNotes();
-    console.log('Your articles:');
-    notes.forEach(note => {
-        console.log(note.title);
-    });
+/** getArticles */
+const getAtricles = () => {
+    const notes = loadArticles();
+    console.log(notes);
+    return notes;
 }
-///////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////
 
-/** readNote 模块 */
+/** readArticle */
 const readArticle = (title) => {
-    const notes = loadNotes();
+    const notes = loadArticles();
     const note = notes.find((note) => note.title === title);
-    if (note) {
-        console.log('Title: ' + note.title);
-        console.log('Content: ' + note.body);
-    } else {
-        console.log('no note found!');
-    }
+    return note;
 }
-
-
-
 
 module.exports = {
     addArticle: addArticle,
     removeNote: removeArticle,
-    displayList: displayList,
+    getAtricles: getAtricles,
     readArticle: readArticle,
 };

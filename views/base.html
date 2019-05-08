@@ -3,18 +3,60 @@
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width,initial-scale=1" />
-        <meta
-            name=""
-            content=""
-        />
+        <meta name="description" content="aar's first blog system test" />
         <title>{{ title }}</title>
         <link rel="stylesheet" href="/static/css/bootstrap.css" />
         <script src="/static/js/bootstrap.js"></script>
     </head>
 
     <body>
+        <nav class="navbar navbar-default">
+            <!-- We use the fluid option here to avoid overriding the fixed width of a normal container within the narrow content columns. -->
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button
+                        type="button"
+                        class="navbar-toggle collapsed"
+                        data-toggle="collapse"
+                        data-target="#bs-example-navbar-collapse-6"
+                        aria-expanded="false"
+                    >
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">Brand</a>
+                </div>
+
+                <div
+                    class="collapse navbar-collapse"
+                    id="bs-example-navbar-collapse-6"
+                >
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="#">Home</a></li>
+                        <li><a href="#">Link</a></li>
+                        <li><a href="#">Link</a></li>
+                    </ul>
+                </div>
+                <!-- /.navbar-collapse -->
+            </div>
+        </nav>
         {% block main %} {% endblock %}
-        <footer>
+        <footer style="background-color:#ddd; padding: 20px 0;">
+            <div class="container">
+                <p>
+                    <a target="_blank" href="/">Website</a>
+                    -
+                    <a target="_blank" href="https://github.com/AaronKwong929"
+                        >GitHub</a
+                    >
+                    -
+                    <a target="_blank" href="http://weibo.com/liaoxuefeng"
+                        >Weibo</a
+                    >
+                </p>
+            </div>
         </footer>
     </body>
 </html>
