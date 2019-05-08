@@ -30,10 +30,10 @@ var fn_catalog = async (ctx, next) => {
 };
 
 var fn_article = async (ctx, next) => {
-    const article = articles.readArticle(ctx.params.id);
+    const article = articles.readArticle(ctx.params.title);
     ctx.render('article.html', {
         title: 'Details',
-        article,
+        article
     });
 };
 
@@ -54,11 +54,18 @@ var fn_new_submit = async (ctx, next) => {
     });
 };
 
+var fn_delete = async (ctx, next) => {
+    var title = ctx.params.title;
+    console.log(`deleting ${title}`);
+    ctx.redirect('/catalog');
+};
+
 module.exports = {
     'GET /': fn_index,
     'POST /signin': fn_signIn,
     'GET /catalog': fn_catalog,
-    'GET /articles/:id': fn_article,
+    'GET /articles/:title': fn_article,
     'GET /new': fn_new,
-    'POST /new': fn_new_submit
+    'POST /new': fn_new_submit,
+    'GET /articles/:title/delete': fn_delete
 };

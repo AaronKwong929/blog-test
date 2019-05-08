@@ -23,3 +23,14 @@ blog-test/
 |
 +- node_modules/
 ```
+
+## 删除文章的操作难点：
+
+不太明白怎么将链接的herf指定到本网页的下一级
+/articles/:title/delete
+
+### 解法： 字符串拼接
+
+```html
+<a href="{{ "http://127.0.0.1:3000/articles/" + article.title + "/delete" }}">删除</a>
+```
