@@ -1,1 +1,45 @@
- 
+{% extends "base.html" %} {% block main %}
+<div class="jumbotron" style="background:#01a3a4; height:250px;">
+    <div class="container">
+        <h1>注册</h1>
+    </div>
+</div>
+<div class="container">
+    <div class="alert alert-danger" role="alert">
+        注册失败，用户名已存在
+    </div>
+    <form action="/signup" method="post">
+        <p>
+            Name:<input
+                name="name"
+                type="text"
+                class="form-control"
+                placeholder="Username"
+                aria-describedby="basic-addon1"
+                style="width:50%;"
+            />
+        </p>
+        <p>
+            Password:<input
+                name="password"
+                type="password"
+                type="text"
+                class="form-control"
+                placeholder="Password"
+                aria-describedby="basic-addon1"
+                style="width:50%;"
+            />
+        </p>
+        <div class="container">
+            <p>
+                <button type="submit" class="btn btn-primary btn-lg">
+                    注册
+                </button>
+            </p>
+        </div>
+    </form>
+    <div class="container" style="margin-bottom:30px;">
+        <a class="btn btn-primary btn-lg" href="/" role="button">返回</a>
+    </div>
+</div>
+{% endblock %}

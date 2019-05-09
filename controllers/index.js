@@ -1,4 +1,5 @@
 const articles = require('../articles.js');
+const users = require('../users.js');
 
 var fn_index = async (ctx, next) => {
     ctx.render('index.html', {
@@ -89,19 +90,26 @@ var fn_about = (ctx, next) => {
 var fn_signUp = (ctx, next) => {
     if (ctx.method === 'GET') {
         ctx.render('signup.html',{
-
         });
     } else if (ctx.method === 'POST') {
-        if (true) {
+        const userName = ctx.request.body.name;
+        const userPassword = ctx.request.body.password;
+        console.log(`${userName} ${userPassword}`);
+        if (!users.findUser(userName)) {
+            users.addUser(userName, userPassword)
             ctx.render('signup-ok.html', {
                 title: 'Successful',
             });
-        } else if (false) {
+        } else {
             ctx.render('signup-failed.html'), {
                 title: 'Failed',
             }
         }
     }
+};
+
+var fn_test = (ctx, next) => {
+    ctx.render('signup-failed.html');
 };
 
 module.exports = {
@@ -118,4 +126,8 @@ module.exports = {
     'GET /about': fn_about,
     'GET /signup': fn_signUp,
     'POST /signup': fn_signUp,
+
+    'GET /signup-failed': fn_test,
+
+
 };

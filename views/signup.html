@@ -1,11 +1,11 @@
 {% extends "base.html" %} {% block main %}
 <div class="jumbotron" style="background:#01a3a4; height:250px;">
-    <div class="container" style="padding-bottom: 6%;">
-        <h1>登陆</h1>
+    <div class="container">
+        <h1>注册</h1>
     </div>
 </div>
 <div class="container">
-    <form action="/signin" method="post">
+    <form action="/signup" method="post">
         <p>
             Name:<input
                 name="name"
@@ -30,7 +30,7 @@
         <div class="container">
             <p>
                 <button type="submit" class="btn btn-primary btn-lg">
-                    登陆
+                    注册
                 </button>
             </p>
         </div>
