@@ -15,15 +15,17 @@ const saveArticle = article => {
     const dataJSON = JSON.stringify(article);
     fs.writeFileSync('articles.json', dataJSON);
 };
+
 ///////////////////////////////////////////////////////
 
-/** addArticle */
-const addArticle = (title, body, time) => {
+/** add article */
+const addArticle = (title, body) => {
     const notes = loadArticles();
+    const time = new Date().toLocaleString();
     notes.push({
         title: title,
         content: body,
-        time: time
+        time: time,
     });
     saveArticle(notes);
     console.log('New article added!');
@@ -31,7 +33,7 @@ const addArticle = (title, body, time) => {
 
 ///////////////////////////////////////////////////////
 
-/* removeArticle */
+/* remove article */
 const removeArticle = title => {
     const notes = loadArticles();
     const notesToKeep = notes.filter(note => note.title !== title);
@@ -43,33 +45,30 @@ const removeArticle = title => {
         console.log('article removed.');
     }
 };
+
 ///////////////////////////////////////////////////////
 
-/** getArticles */
-const getArticles = () => {
-    const notes = loadArticles();
-    return notes;
-};
-///////////////////////////////////////////////////////
-
-/** readArticle */
+/** read article */
 const readArticle = title => {
     const notes = loadArticles();
     const note = notes.find(note => note.title === title);
     return note;
 };
 
-const editArticle = (new_title, new_content, new_time) => {
+///////////////////////////////////////////////////////
+
+/** edit article */
+const editArticle = (new_title, new_content) => {
     const articles = loadArticles();
     const old_article = articles.find(article => article.title === new_title);
     removeArticle(old_article.title);
-    addArticle(new_title, new_content, new_time);
+    addArticle(new_title, new_content);
 };
 
 module.exports = {
+    loadArticles: loadArticles,
     addArticle: addArticle,
     removeNote: removeArticle,
-    getArticles: getArticles,
     readArticle: readArticle,
-    editArticle: editArticle
+    editArticle: editArticle,
 };
