@@ -1,18 +1,14 @@
 {% extends "base.html" %} {% block main %}
-<div class="jumbotron">
+<div class="jumbotron" style="background:#3498db; height:250px;">
     <div class="container">
-        <h1>first attemp</h1>
-        <p>delay no more</p>
-        <p>
-            <a class="btn btn-primary btn-lg" href="#" role="button"
-                >Learn more</a
-            >
-        </p>
+        <h1>AaronKwong</h1>
+        <p>Delay no more</p>
     </div>
 </div>
-<form action="/signin" method="post">
-    <p>Name:<input name="name" type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon1"/></p>
-    <p>Password:<input name="password" type="password" type="text" class="form-control" placeholder="Password" aria-describedby="basic-addon1"/></p>
-    <p><input type="submit" value="Submit" /></p>
-</form>
+<div class="container">
+    <p>
+    <a class="btn btn-primary btn-lg" href="/signin" role="button">登陆</a>
+    <a class="btn btn-primary btn-lg" href="/signup" role="button">注册</a>
+    </p>
+</div>
 {% endblock %}

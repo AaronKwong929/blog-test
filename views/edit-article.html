@@ -1,4 +1,10 @@
 {% extends "base.html" %} {% block main %}
+<div class="jumbotron" style="background:#fdcb6e; height:250px;">
+        <div class="container" style="padding-bottom: 6%;">
+            <h1>修改文章</h1>
+        </div>
+        </div>
+<div class="container" style="margin-bottom:30px;">
 <form action="{{"/articles/" + article.title + "/edit" }}" method="post">
     <p>
         Title:<input
@@ -9,6 +15,7 @@
             aria-describedby="basic-addon1"
             value="{{ article.title }}"
             readonly="readonly"
+            style="width:50%;"
         />
     </p>
     <p>
@@ -19,8 +26,16 @@
             placeholder="Content"
             aria-describedby="basic-addon1"
             value="{{ article.content }}"
+            style="width:50%;"
         />
     </p>
-    <button type="submit" class="button is-small is-primary">修改</button>
+    <div class="container">
+    <button type="submit" class="btn btn-primary btn-lg">
+            修改
+        </button>
+        <a class="btn btn-primary btn-lg" href="/articles/funn/delete" role="button">删除</a>
+        </div>
+        
 </form>
+</div>
 {% endblock %}

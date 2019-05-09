@@ -10,7 +10,7 @@
     </head>
 
     <body>
-        <nav class="navbar navbar-default">
+        <nav class="navbar navbar-default" style="margin-bottom: 0">
             <!-- We use the fluid option here to avoid overriding the fixed width of a normal container within the narrow content columns. -->
             <div class="container-fluid">
                 <div class="navbar-header">
@@ -26,7 +26,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">Brand</a>
+                    <div class="navbar-brand">AaronKwong929</div>
                 </div>
 
                 <div
@@ -34,9 +34,9 @@
                     id="bs-example-navbar-collapse-6"
                 >
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="#">Home</a></li>
-                        <li><a href="#">Link</a></li>
-                        <li><a href="#">Link</a></li>
+                        <li><a href="/">主页</a></li>
+                        <li><a href="/articles">文章列表</a></li>
+                        <li><a href="/about">关于</a></li>
                     </ul>
                 </div>
                 <!-- /.navbar-collapse -->
@@ -45,15 +45,14 @@
         {% block main %} {% endblock %}
         <footer style="background-color:#ddd; padding: 20px 0;">
             <div class="container">
+                <p>基于koa.Js，Bootstrap的个人博客1.0</p>
+            </div>
+            <div class="container">
                 <p>
-                    <a target="_blank" href="/">Website</a>
+                    <a target="_blank" href="/">个人主页</a>
                     -
                     <a target="_blank" href="https://github.com/AaronKwong929"
                         >GitHub</a
-                    >
-                    -
-                    <a target="_blank" href="http://weibo.com/liaoxuefeng"
-                        >Weibo</a
                     >
                 </p>
             </div>

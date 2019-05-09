@@ -1,4 +1,10 @@
 {% extends "base.html" %} {% block main %}
+<div class="jumbotron" style="background:#74b9ff; height:250px;">
+    <div class="container">
+        <h1>新建文章</h1>
+    </div>
+</div>
+<div class="container"style="margin-bottom:30px;display: table;width: 50%;margin-left: auto;margin-right: auto;">
 <form action="/new" method="post">
     <p>
         Title:<input
@@ -7,6 +13,7 @@
             class="form-control"
             placeholder="Title"
             aria-describedby="basic-addon1"
+            style="width:50%;"
         />
     </p>
     <p>
@@ -16,8 +23,12 @@
             class="form-control"
             placeholder="Content"
             aria-describedby="basic-addon1"
+            style="width:50%;"
         />
     </p>
-    <button type="submit" class="button is-small is-primary">发布</button>
+    <button type="submit" class="btn btn-primary btn-lg">
+            发布
+        </button>
 </form>
+</div>
 {% endblock %}

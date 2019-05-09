@@ -1,5 +1,15 @@
 {% extends "base.html" %} {% block main %}
-<h1>you have successfully sign in as {{ name }}</h1>
-
-<button><a href='/new'>new article</a></button>
+<div class="jumbotron" style="background:#fab1a0; height:250px;">
+    <div class="container">
+        <h1>登陆成功，{{ name }}</h1>
+    </div>
+</div>
+<div class="container">
+    <p>
+        <a class="btn btn-primary btn-lg" href="/new" role="button">新建文章</a>
+        <a class="btn btn-primary btn-lg" href="/articles" role="button"
+            >查看文章</a
+        >
+    </p>
+</div>
 {% endblock %}

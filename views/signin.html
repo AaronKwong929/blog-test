@@ -1,0 +1,42 @@
+{% extends "base.html" %} {% block main %}
+<div class="jumbotron" style="background:#dfe6e9; height:250px;">
+    <div class="container" style="padding-bottom: 6%;">
+        <h1>登陆</h1>
+    </div>
+</div>
+<div class="container">
+    <form action="/signin" method="post">
+        <p>
+            Name:<input
+                name="name"
+                type="text"
+                class="form-control"
+                placeholder="Username"
+                aria-describedby="basic-addon1"
+                style="width:50%;"
+            />
+        </p>
+        <p>
+            Password:<input
+                name="password"
+                type="password"
+                type="text"
+                class="form-control"
+                placeholder="Password"
+                aria-describedby="basic-addon1"
+                style="width:50%;"
+            />
+        </p>
+        <div class="container">
+            <p>
+                <button type="submit" class="btn btn-primary btn-lg">
+                    登陆
+                </button>
+            </p>
+        </div>
+    </form>
+    <div class="container" style="margin-bottom:30px;">
+        <a class="btn btn-primary btn-lg" href="/" role="button">返回</a>
+    </div>
+</div>
+{% endblock %}

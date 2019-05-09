@@ -1,14 +1,26 @@
 {% extends "base.html" %} {% block main %}
-<h1>{{ article.title }}</h1>
-<div>
-    <h2>
-        {{ article.content }}
-    </h2>
-    <h3>
-        {{ article.time }}
-    </h3>
+<div class="jumbotron" style="background:#00cec9; height:250px;">
+    <div class="container"s>
+        <h1>文章详情</h1>
+    </div>
 </div>
-<button><a href="{{ "/articles/" + article.title + "/delete" }}">删除</a></button>
-
-<button><a href="{{ "/articles/" + article.title + "/edit" }}">修改</a></button>
+<div class="container" style="text-align: center;">
+    <h1>
+        {{ article.title }}
+    </h1>
+    <div>
+        <h2>
+            {{ article.content }}
+        </h2>
+        <h3>
+            {{ article.time }}
+        </h3>
+    </div>
+</div>
+<div class="container" style="text-align: center;">
+    <p>
+        <a class="btn btn-primary btn-lg" href="{{ "/articles/" + article.title + "/delete" }}" role="button">删除</a>
+        <a class="btn btn-primary btn-lg" href="{{ "/articles/" + article.title + "/edit" }}" role="button">修改</a>
+    </p>
+</div>
 {% endblock %}
