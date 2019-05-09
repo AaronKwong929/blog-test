@@ -15,7 +15,7 @@ var fn_signIn = async (ctx, next) => {
     } else if (ctx.method === 'POST') {
         var name = ctx.request.body.name,
             password = ctx.request.body.password;
-        if (name === 'admin' && password === '123') {
+        if (users.varifyUser(name, password)) {
             ctx.render('signin-ok.html', {
                 title: 'Sign In OK',
                 name: name,
@@ -108,10 +108,6 @@ var fn_signUp = (ctx, next) => {
     }
 };
 
-var fn_test = (ctx, next) => {
-    ctx.render('signup-failed.html');
-};
-
 module.exports = {
     'GET /': fn_index,
     'GET /signin': fn_signIn,
@@ -126,8 +122,4 @@ module.exports = {
     'GET /about': fn_about,
     'GET /signup': fn_signUp,
     'POST /signup': fn_signUp,
-
-    'GET /signup-failed': fn_test,
-
-
 };

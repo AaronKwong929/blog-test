@@ -37,8 +37,16 @@ const findUser = (name) => {
     return users.find((user) => user.name === name);
 }
 
+const varifyUser = (name ,password) => {
+    const users = loadUsers();
+    return users.find((user) => {
+        return user.name === name && user.password === password;
+    });
+};
+
 module.exports = {
     loadUsers: loadUsers,
     findUser: findUser,
     addUser: addUser,
+    varifyUser: varifyUser,
 };
