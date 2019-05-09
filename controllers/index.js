@@ -22,9 +22,9 @@ var fn_signIn = async (ctx, next) => {
 };
 
 var fn_catalog = async (ctx, next) => {
-    var articless = articles.getAtricles();
+    var articless = articles.getArticles();
     ctx.render('catalog.html', {
-        title: 'Article Catalog',
+        title: 'Articles Catalog',
         articless
     });
 };
@@ -58,25 +58,39 @@ var fn_delete = async (ctx, next) => {
     var title = ctx.params.title;
     console.log(`deleting ${title}`);
     articles.removeNote(title);
-    ctx.redirect('/catalog');
+    ctx.redirect('/articles');
 };
 
 var fn_edit = async (ctx, next) => {
-    var title = ctx.params.title;
-    const article = articles.getAtricles(title);
-    ctx.render("edit-article.html", {
-        title: 'edit-article',
-        article,
-    });
+    if (ctx.method === 'GET') {
+        var title = ctx.params.title;
+        console.log(title);
+        const article = articles.readArticle(title);
+        ctx.render('edit-article.html', {
+            title: 'edit-article',
+            article
+        });
+    } else if (ctx.method === 'POST') {
+        var title = ctx.request.body.title,
+            content = ctx.request.body.content,
+            time = new Date().toLocaleString();
+        console.log(`${title}  ${content} ${time}`);
+        articles.editArticle(title, content, time);
+        ctx.render('edit-ok.html', {
+            title: 'Succeed!'
+        });
+        ctx.redirect('/articles');
+    }
 };
 
 module.exports = {
     'GET /': fn_index,
     'POST /signin': fn_signIn,
-    'GET /catalog': fn_catalog,
+    'GET /articles': fn_catalog,
     'GET /articles/:title': fn_article,
     'GET /new': fn_new,
     'POST /new': fn_new_submit,
     'GET /articles/:title/delete': fn_delete,
-    'POST /articles/:title/edit': fn_edit,
+    'GET /articles/:title/edit': fn_edit,
+    'POST /articles/:title/edit': fn_edit
 };

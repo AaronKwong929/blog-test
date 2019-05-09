@@ -1,3 +1,26 @@
 {% extends "base.html" %} {% block main %}
-
+<form action="{{"/articles/" + article.title + "/edit" }}" method="post">
+    <p>
+        Title:<input
+            name="title"
+            type="text"
+            class="form-control"
+            placeholder="Title"
+            aria-describedby="basic-addon1"
+            value="{{ article.title }}"
+            readonly="readonly"
+        />
+    </p>
+    <p>
+        Content:<input
+            name="content"
+            type="text"
+            class="form-control"
+            placeholder="Content"
+            aria-describedby="basic-addon1"
+            value="{{ article.content }}"
+        />
+    </p>
+    <button type="submit" class="button is-small is-primary">修改</button>
+</form>
 {% endblock %}

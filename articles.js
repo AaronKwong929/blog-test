@@ -11,7 +11,7 @@ const loadArticles = () => {
     }
 };
 
-const saveArticle = (article) => {
+const saveArticle = article => {
     const dataJSON = JSON.stringify(article);
     fs.writeFileSync('articles.json', dataJSON);
 };
@@ -20,27 +20,21 @@ const saveArticle = (article) => {
 /** addArticle */
 const addArticle = (title, body, time) => {
     const notes = loadArticles();
-    const duplicateNote = notes.find((note) => note.title === title);
-    if (!duplicateNote) {
-        notes.push({
-            title: title,
-            content: body,
-            time: time,
-        });
-
-        saveArticle(notes);
-        console.log('New article added!');
-    } else {
-        console.log('Article title taken!');
-    }
+    notes.push({
+        title: title,
+        content: body,
+        time: time
+    });
+    saveArticle(notes);
+    console.log('New article added!');
 };
 
 ///////////////////////////////////////////////////////
 
 /* removeArticle */
-const removeArticle = (title) => {
+const removeArticle = title => {
     const notes = loadArticles();
-   const notesToKeep = notes.filter((note) => note.title !== title);
+    const notesToKeep = notes.filter(note => note.title !== title);
 
     if (notesToKeep.length === notes.length) {
         console.log('no article found');
@@ -48,27 +42,34 @@ const removeArticle = (title) => {
         saveArticle(notesToKeep);
         console.log('article removed.');
     }
-}
+};
 ///////////////////////////////////////////////////////
 
 /** getArticles */
-const getAtricles = () => {
+const getArticles = () => {
     const notes = loadArticles();
-    console.log(notes);
     return notes;
-}
+};
 ///////////////////////////////////////////////////////
 
 /** readArticle */
-const readArticle = (title) => {
+const readArticle = title => {
     const notes = loadArticles();
-    const note = notes.find((note) => note.title === title);
+    const note = notes.find(note => note.title === title);
     return note;
-}
+};
+
+const editArticle = (new_title, new_content, new_time) => {
+    const articles = loadArticles();
+    const old_article = articles.find(article => article.title === new_title);
+    removeArticle(old_article.title);
+    addArticle(new_title, new_content, new_time);
+};
 
 module.exports = {
     addArticle: addArticle,
     removeNote: removeArticle,
-    getAtricles: getAtricles,
+    getArticles: getArticles,
     readArticle: readArticle,
+    editArticle: editArticle
 };

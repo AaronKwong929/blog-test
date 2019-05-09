@@ -8,6 +8,7 @@
         {{ article.time }}
     </h3>
 </div>
-<a href="{{ "/articles/" + article.title + "/delete" }}">删除</a>
+<button><a href="{{ "/articles/" + article.title + "/delete" }}">删除</a></button>
 
+<button><a href="{{ "/articles/" + article.title + "/edit" }}">修改</a></button>
 {% endblock %}
