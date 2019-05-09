@@ -49,9 +49,7 @@ var fn_new_submit = async (ctx, next) => {
         time = new Date().toLocaleString();
     console.log(`${title}  ${content}  ${time}`);
     articles.addArticle(title, content, time);
-    ctx.render('new-ok.html', {
-        title: 'Succeed!'
-    });
+    ctx.redirect(`/articles/${title}`);
 };
 
 var fn_delete = async (ctx, next) => {
@@ -76,9 +74,6 @@ var fn_edit = async (ctx, next) => {
             time = new Date().toLocaleString();
         console.log(`${title}  ${content} ${time}`);
         articles.editArticle(title, content, time);
-        ctx.render('edit-ok.html', {
-            title: 'Succeed!'
-        });
         ctx.redirect('/articles');
     }
 };
