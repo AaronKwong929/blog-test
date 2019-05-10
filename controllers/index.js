@@ -4,7 +4,7 @@ const users = require('../users.js');
 var fn_index = async (ctx, next) => {
     if (JSON.stringify(ctx.session) !== '{}') {
         const name = ctx.session.name;
-        if (ctx.session.name === 'admin') {
+        if (users.isAdmin(name)) {
             ctx.render('admin-login.html', {
                 name
             });
@@ -30,7 +30,7 @@ var fn_signIn = async (ctx, next) => {
             password = ctx.request.body.password;
         if (users.varifyUser(name, password)) {
             ctx.session.name = name;
-            if (name === 'admin') {
+            if (users.isAdmin(name)) {
                 ctx.render('admin-login.html', {
                     name
                 });
@@ -65,7 +65,7 @@ const fn_needToLogin = async (ctx, next) => {
 
 var fn_article = async (ctx, next) => {
     const article = articles.readArticle(ctx.params.title);
-    if (ctx.session.name === 'admin') {
+    if (users.isAdmin(ctx.session.name)) {
         ctx.render('admin-article.html', {
             title: '文章详情',
             article
