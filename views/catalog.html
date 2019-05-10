@@ -6,12 +6,17 @@
 </div>
 <div
     class="container"
-    style="margin-bottom:30px;display: table;width: 50%;margin-left: auto;margin-right: auto;"
+    style="margin-bottom:30px;display: table;width:40%;margin-left: auto;margin-right: auto;"
 >
     {% for article in articless %}
-    <a href="/articles/{{ article.title }}" class="list-group-item"
-        >{{ article.title }}</a
-    >
+    <a href="/articles/{{ article.title }}" class="list-group-item" style="text-align:center;">{{
+        article.title
+    }}</a>
     {% endfor %}
+</div>
+<div class="container" style="text-align:center">
+    <p>
+        <a href="/" class="btn btn-lg btn-primary">返回主页</a>
+    </p>
 </div>
 {% endblock %}

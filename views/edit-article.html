@@ -15,7 +15,7 @@
             aria-describedby="basic-addon1"
             value="{{ article.title }}"
             readonly="readonly"
-            style="width:50%;"
+            style="width:30%;"
         />
     </p>
     <p>
@@ -29,13 +29,14 @@
             style="width:50%;"
         />
     </p>
-    <div class="container">
-    <button type="submit" class="btn btn-primary btn-lg">
-            修改
+    <div class="container" style="text-align: center;">
+        <p>
+        <button type="submit" class="btn btn-primary btn-lg">
+                修改
         </button>
         <a class="btn btn-primary btn-lg" href="/articles/funn/delete" role="button">删除</a>
-        </div>
-        
+        </p>
+    </div>
 </form>
 </div>
 {% endblock %}

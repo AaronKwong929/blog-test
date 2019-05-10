@@ -4,31 +4,37 @@
         <h1>新建文章</h1>
     </div>
 </div>
-<div class="container"style="margin-bottom:30px;display: table;width: 50%;margin-left: auto;margin-right: auto;">
-<form action="/new" method="post">
-    <p>
-        Title:<input
-            name="title"
-            type="text"
-            class="form-control"
-            placeholder="Title"
-            aria-describedby="basic-addon1"
-            style="width:50%;"
-        />
-    </p>
-    <p>
-        Content:<input
-            name="content"
-            type="text"
-            class="form-control"
-            placeholder="Content"
-            aria-describedby="basic-addon1"
-            style="width:50%;"
-        />
-    </p>
-    <button type="submit" class="btn btn-primary btn-lg">
-            发布
-    </button>
-</form>
+<div class="container">
+    <form action="/new" method="post">
+        <p>
+            Title:<input
+                name="title"
+                type="text"
+                class="form-control"
+                placeholder="Title"
+                aria-describedby="basic-addon1"
+                style="width:30%;"
+            />
+        </p>
+        <p>
+            Content:<input
+                name="content"
+                type="text"
+                class="form-control"
+                placeholder="Content"
+                aria-describedby="basic-addon1"
+                style="width:50%"
+            />
+        </p>
+        <!--appearance:button; box-sizing:border-box;padding:0;width:30%;height:200px;-->
+        <div class="container" style="text-align:center;">
+            <p>
+                <button type="submit" class="btn btn-primary btn-lg">
+                    发布
+                </button>
+                <a href="/" class="btn btn-primary btn-lg">返回</a>
+            </p>
+        </div>
+    </form>
 </div>
 {% endblock %}
