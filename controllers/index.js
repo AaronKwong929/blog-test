@@ -2,24 +2,43 @@ const articles = require('../articles.js');
 const users = require('../users.js');
 
 var fn_index = async (ctx, next) => {
-    ctx.render('index.html', {
-        title: 'Welclome'
-    });
+    if (JSON.stringify(ctx.session) !== '{}') {
+        const name = ctx.session.name;
+        if (ctx.session.name === 'admin') {
+            ctx.render('admin-login.html', {
+                name
+            });
+        } else {
+            ctx.render('user-login.html', {
+                name
+            });
+        }
+    } else {
+        ctx.render('index.html', {
+            title: 'Welclome'
+        });
+    }
 };
 
 var fn_signIn = async (ctx, next) => {
     if (ctx.method === 'GET') {
-        ctx.render('signin.html',{
-            title: 'Sign In',
+        ctx.render('signin.html', {
+            title: 'Sign In'
         });
     } else if (ctx.method === 'POST') {
         var name = ctx.request.body.name,
             password = ctx.request.body.password;
         if (users.varifyUser(name, password)) {
-            ctx.render('signin-ok.html', {
-                title: 'Sign In OK',
-                name: name,
-            });
+            ctx.session.name = name;
+            if (name === 'admin') {
+                ctx.render('admin-login.html', {
+                    name
+                });
+            } else {
+                ctx.render('user-login.html', {
+                    name
+                });
+            }
         } else {
             ctx.render('signin-failed.html', {
                 title: 'Sign In Failed.'
@@ -29,19 +48,34 @@ var fn_signIn = async (ctx, next) => {
 };
 
 var fn_catalog = async (ctx, next) => {
-    var articless = articles.loadArticles();
-    ctx.render('catalog.html', {
-        title: 'Articles Catalog',
-        articless
-    });
+    if (JSON.stringify(ctx.session) !== '{}') {
+        var articless = articles.loadArticles();
+        ctx.render('catalog.html', {
+            title: 'Articles Catalog',
+            articless
+        });
+    } else {
+        ctx.redirect('/needtologin');
+    }
+};
+
+const fn_needToLogin = async (ctx, next) => {
+    ctx.render('need-to-login.html');
 };
 
 var fn_article = async (ctx, next) => {
     const article = articles.readArticle(ctx.params.title);
-    ctx.render('article.html', {
-        title: 'Details',
-        article
-    });
+    if (ctx.session.name === 'admin') {
+        ctx.render('admin-article.html', {
+            title: '文章详情',
+            article
+        });
+    } else {
+        ctx.render('user-article.html', {
+            title: '文章详情',
+            article,
+        })
+    }
 };
 
 var fn_new = async (ctx, next) => {
@@ -59,8 +93,8 @@ var fn_new_submit = async (ctx, next) => {
 
 var fn_delete = async (ctx, next) => {
     var title = ctx.params.title;
-    console.log(`deleting ${title}`);
     articles.removeNote(title);
+    console.log(ctx.session.name);
     ctx.redirect('/articles');
 };
 
@@ -83,29 +117,34 @@ var fn_edit = async (ctx, next) => {
 
 var fn_about = (ctx, next) => {
     ctx.render('about.html', {
-        title: 'About',
+        title: 'About'
     });
 };
 
 var fn_signUp = (ctx, next) => {
     if (ctx.method === 'GET') {
-        ctx.render('signup.html',{
-        });
+        ctx.render('signup.html', {});
     } else if (ctx.method === 'POST') {
         const userName = ctx.request.body.name;
         const userPassword = ctx.request.body.password;
-        console.log(`${userName} ${userPassword}`);
         if (!users.findUser(userName)) {
-            users.addUser(userName, userPassword)
+            users.addUser(userName, userPassword);
+            ctx.session.name = userName;
             ctx.render('signup-ok.html', {
-                title: 'Successful',
+                title: 'Successful'
             });
         } else {
-            ctx.render('signup-failed.html'), {
-                title: 'Failed',
-            }
+            ctx.render('signup-failed.html'),
+                {
+                    title: 'Failed'
+                };
         }
     }
+};
+
+const fn_logout = (ctx, next) => {
+    ctx.session = null;
+    ctx.redirect('/');
 };
 
 module.exports = {
@@ -122,4 +161,6 @@ module.exports = {
     'GET /about': fn_about,
     'GET /signup': fn_signUp,
     'POST /signup': fn_signUp,
+    'GET /logout': fn_logout,
+    'GET /needtologin': fn_needToLogin
 };

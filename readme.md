@@ -63,3 +63,31 @@ blog-test/
 ```html
 <a class="btn btn-primary btn-lg" href="/" role="button">返回</a>
 ```
+
+## koa-session相关
+
+### 学习： [koa-session](https://www.jianshu.com/p/8f4cc45d712e)
+
+[2](https://segmentfault.com/a/1190000012412299)
+
+### 清除session只用 ctx.session = null 无效，需要在fn_signin内使用
+
+```javascript
+var fn_index = async (ctx, next) => {
+    if (JSON.stringify(ctx.session) !== '{}') {
+        console.log(ctx.session);
+        const name = ctx.session.name;
+        ctx.render('index-with-login.html', {
+            name,
+        });
+    } else {
+        ctx.render('index.html', {
+            title: 'Welclome'
+        });
+    }
+};
+```
+
+### 用JSON.stringify(ctx.session) !== '{}' 判断session是否为空对象，否则继续渲染已登陆页面
+
+[判断JS对象是否为空的几个方法](https://blog.csdn.net/fungleo/article/details/78113661)

@@ -37,13 +37,7 @@ const addArticle = (title, body) => {
 const removeArticle = title => {
     const notes = loadArticles();
     const notesToKeep = notes.filter(note => note.title !== title);
-
-    if (notesToKeep.length === notes.length) {
-        console.log('no article found');
-    } else {
-        saveArticle(notesToKeep);
-        console.log('article removed.');
-    }
+    saveArticle(notesToKeep);
 };
 
 ///////////////////////////////////////////////////////

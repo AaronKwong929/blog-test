@@ -3,8 +3,11 @@ const bodyParser = require('koa-bodyparser');
 const app = new Koa();
 const controller = require('./controller.js')
 const templating = require('./templating.js');
+const session = require('koa-session');
+const path = require('path');
+const fs = require('fs');
+//require('./session')(app);
 const isProduction = process.env.NODE_ENV === 'production'; // 部署（生产环境production使用缓存，开发环境development不使用，直接刷新浏览器查看效果不需要重启node
-
 
 app.use(async (ctx, next) => {
     console.log(`Process${ctx.request.method} ${ctx.request.url}`);
@@ -33,6 +36,53 @@ app.use(
     })
 );
 
+
+const store = {
+    get(key) {
+        const sessionDir = path.resolve(__dirname, './sess');
+        const files = fs.readdirSync(sessionDir);
+
+        for (let i = 0; i < files.length; i++) {
+            if (files[i].startsWith(key)) {
+                const filepath = path.resolve(sessionDir, files[i]);
+                delete require.cache[require.resolve(filepath)];
+                const result = require(filepath);
+                return result;
+            }
+        }
+    },
+    set(key, session) {
+        const filePath = path.resolve(__dirname, './sess', `${key}.js`);
+        const content = `module.exports = ${JSON.stringify(session)};`;
+
+        fs.writeFileSync(filePath, content);
+    },
+
+    destroy(key) {
+        const filePath = path.resolve(__dirname, './sess', `${key}.js`);
+        fs.unlinkSync(filePath);
+    }
+};
+
+app.keys = ['some secret hurr'];
+ 
+const CONFIG = {
+  key: 'koa:sess', /** (string) cookie key (default is koa:sess) */
+  /** (number || 'session') maxAge in ms (default is 1 days) */
+  /** 'session' will result in a cookie that expires when session/browser is closed */
+  /** Warning: If a session cookie is stolen, this cookie will never expire */
+  maxAge: 86400000,
+  autoCommit: true, /** (boolean) automatically commit headers (default true) */
+  overwrite: true, /** (boolean) can overwrite or not (default true) */
+  httpOnly: true, /** (boolean) httpOnly or not (default true) */
+  signed: true, /** (boolean) signed or not (default true) */
+  rolling: false, /** (boolean) Force a session identifier cookie to be set on every response. The expiration is reset to the original maxAge, resetting the expiration countdown. (default is false) */
+  renew: false, /** (boolean) renew session when session is nearly expired, so we can always keep user logged in. (default is false)*/
+  store:store,
+};
+ 
+app.use(session(CONFIG, app));
 app.use(controller());
 app.listen(3000);
 console.log('app started at port 3000');
+  

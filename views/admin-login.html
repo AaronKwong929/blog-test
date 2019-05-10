@@ -1,0 +1,19 @@
+{% extends "base.html" %} {% block main %}
+<div class="jumbotron" style="background:#3498db; height:250px;">
+    <div class="container">
+        <h1>欢迎回来，{{ name }}</h1>
+        <p>Delay no more!</p>
+    </div>
+</div>
+<div class="container">
+        <p>
+            <a class="btn btn-primary btn-lg" href="/new" role="button">新建文章</a>
+            <a class="btn btn-primary btn-lg" href="/articles" role="button"
+                >查看文章</a
+            >
+            <a class="btn btn-primary btn-lg" href="/logout" role="button"
+                >注销</a
+            >
+        </p>
+    </div>
+{% endblock %}

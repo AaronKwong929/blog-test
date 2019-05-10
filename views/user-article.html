@@ -1,0 +1,20 @@
+{% extends "base.html" %} {% block main %}
+<div class="jumbotron" style="background:#00cec9; height:250px;">
+    <div class="container"s>
+        <h1>文章详情</h1>
+    </div>
+</div>
+<div class="container" style="text-align: center;">
+    <h1>
+        {{ article.title }}
+    </h1>
+    <div>
+        <h2>
+            {{ article.content }}
+        </h2>
+        <h3>
+            {{ article.time }}
+        </h3>
+    </div>
+</div>
+{% endblock %}

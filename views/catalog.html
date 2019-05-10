@@ -4,11 +4,14 @@
         <h1>文章列表</h1>
     </div>
 </div>
-<div class="container" style="margin-bottom:30px;display: table;width: 50%;margin-left: auto;margin-right: auto;">
+<div
+    class="container"
+    style="margin-bottom:30px;display: table;width: 50%;margin-left: auto;margin-right: auto;"
+>
     {% for article in articless %}
-    <a href="/articles/{{ article.title }}" class="list-group-item">{{
-        article.title
-    }}</a>
+    <a href="/articles/{{ article.title }}" class="list-group-item"
+        >{{ article.title }}</a
+    >
     {% endfor %}
 </div>
 {% endblock %}
