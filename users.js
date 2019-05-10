@@ -44,9 +44,15 @@ const varifyUser = (name ,password) => {
     });
 };
 
+const isAdmin = (name) => {
+    const user = findUser(name);
+    return user.isAdmin === true;
+}
+
 module.exports = {
     loadUsers: loadUsers,
     findUser: findUser,
     addUser: addUser,
     varifyUser: varifyUser,
+    isAdmin: isAdmin,
 };
