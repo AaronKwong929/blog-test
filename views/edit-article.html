@@ -7,7 +7,7 @@
 <div class="container" style="margin-bottom:30px;">
 <form action="{{"/articles/" + article.title + "/edit" }}" method="post">
     <p>
-        Title:<input
+        <input
             name="title"
             type="text"
             class="form-control"
@@ -15,18 +15,18 @@
             aria-describedby="basic-addon1"
             value="{{ article.title }}"
             readonly="readonly"
-            style="width:30%;"
+            style="width:40%;margin: 0 auto;"
         />
     </p>
     <p>
-        Content:<input
+        <input
             name="content"
             type="text"
             class="form-control"
             placeholder="Content"
             aria-describedby="basic-addon1"
             value="{{ article.content }}"
-            style="width:50%;"
+            style="width:40%;margin: 0 auto;"
         />
     </p>
     <div class="container" style="text-align: center;">
@@ -35,6 +35,7 @@
                 修改
         </button>
         <a class="btn btn-primary btn-lg" href="/articles/funn/delete" role="button">删除</a>
+        <a class="btn btn-primary btn-lg" href="{{ "/articles/" + article.title }}" role="button">返回</a>
         </p>
     </div>
 </form>
