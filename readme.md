@@ -76,3 +76,14 @@ JSON.stringify(ctx.session) !== '{}'；
 ```
 
 [判断JS对象是否为空的几个方法](https://blog.csdn.net/fungleo/article/details/78113661)
+
+## 用到的库：
+
+[koa（中文网](https://koa.bootcss.com/)
+[koa-bodyparser](https://www.npmjs.com/package/koa-bodyparser)
+[koa-session](https://www.npmjs.com/package/koa-session)
+[path](http://nodejs.cn/api/path.html)
+[fs](http://nodejs.cn/api/fs.html)
+[mz/fs](https://www.npmjs.com/package/mz)
+[mime](https://www.npmjs.com/package/mime)
+[nunjucks（中文](https://nunjucks.bootcss.com/)
