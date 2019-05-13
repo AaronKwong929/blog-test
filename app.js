@@ -6,7 +6,6 @@ const templating = require('./templating.js');
 const session = require('koa-session');
 const path = require('path');
 const fs = require('fs');
-//require('./session')(app);
 const isProduction = process.env.NODE_ENV === 'production'; // 部署（生产环境production使用缓存，开发环境development不使用，直接刷新浏览器查看效果不需要重启node
 
 app.use(async (ctx, next) => {
