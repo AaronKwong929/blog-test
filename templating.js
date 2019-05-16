@@ -6,7 +6,7 @@ var createEnv = function(path, opts) {
         watch = opts.watch || false,
         throwOnUndefined = opts.throwOnUndefined || false,
         env = new nunjucks.Environment(
-            new nunjucks.FileSystemLoader('views', {
+            new nunjucks.FileSystemLoader(path, {
                 noCache: noCache,
                 watch: watch
             }),
@@ -15,7 +15,7 @@ var createEnv = function(path, opts) {
                 throwOnUndefined: throwOnUndefined
             }
         );
-    if (opts.filters) {
+    if (opts.filters) {  //加过滤器 如果有的话
         for (var f in opts.filters) {
             env.addFilter(f, opts.filters[f]);
         }
