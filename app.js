@@ -9,12 +9,12 @@ const fs = require('fs');
 const isProduction = process.env.NODE_ENV === 'production'; // 部署（生产环境production使用缓存，开发环境development不使用，直接刷新浏览器查看效果不需要重启node
 
 app.use(async (ctx, next) => {
-    console.log(`Process${ctx.request.method} ${ctx.request.url}`);
-    var start = new Date().getTime(),
-    execTime;
+    console.log(`Process ${ctx.request.method} ${ctx.request.url}`);
+    // var start = new Date().getTime(),
+    // execTime;
     await next();
-    execTime = new Date().getTime() - start;
-    ctx.response.set(`X-Response-Time`, `${execTime}ms`)
+    // execTime = new Date().getTime() - start;
+    // ctx.response.set(`X-Response-Time`, `${execTime}ms`)
 });
 
 if (!isProduction) {
@@ -25,7 +25,7 @@ if (!isProduction) {
 
 app.use(bodyParser());
 
-//app.use(staticFiles('/static/', __dirname + '/static'));
+// app.use(staticFiles('/static/', __dirname + '/static'));
 
 
 app.use(
@@ -53,7 +53,6 @@ const store = {
     set(key, session) {
         const filePath = path.resolve(__dirname, './sess', `${key}.js`);
         const content = `module.exports = ${JSON.stringify(session)};`;
-
         fs.writeFileSync(filePath, content);
     },
 
