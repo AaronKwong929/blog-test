@@ -77,6 +77,10 @@ JSON.stringify(ctx.session) !== '{}'；
 
 [判断JS对象是否为空的几个方法](https://blog.csdn.net/fungleo/article/details/78113661)
 
+## 1234
+
+使用了mz，并通过require('mz/fs');导入。mz提供的API和Node.js的fs模块完全相同，但fs模块使用回调，而mz封装了fs对应的函数，并改为Promise。这样，我们就可以非常简单的用await调用mz的函数，而不需要任何回调。
+
 ## 用到的库：
 
 [koa（中文网](https://koa.bootcss.com/)
@@ -85,5 +89,6 @@ JSON.stringify(ctx.session) !== '{}'；
 [path](http://nodejs.cn/api/path.html)
 [fs](http://nodejs.cn/api/fs.html)
 [mz/fs](https://www.npmjs.com/package/mz)
-[mime](https://www.npmjs.com/package/mime)
+[mime的npm文档](https://www.npmjs.com/package/mime)
+[使用mime](https://www.jianshu.com/p/1ce720f20fc1)
 [nunjucks（中文](https://nunjucks.bootcss.com/)
